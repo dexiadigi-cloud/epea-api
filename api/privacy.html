@@ -1,0 +1,111 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Epea - Privacy Policy</title>
+<style>
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+line-height:1.65;color:#1a1a1a;background:#ffffff;max-width:46rem;margin:0 auto;padding:2rem 1.25rem;}
+h1{font-size:2rem;margin-bottom:.25rem;} h2{font-size:1.25rem;margin-top:2rem;}
+.tag{color:#555;font-size:1.1rem;margin-top:0;}
+code{background:#f4f4f4;padding:.15rem .4rem;border-radius:4px;font-size:.9em;}
+a{color:#0b5fff;} .fine{color:#666;font-size:.9rem;margin-top:2.5rem;border-top:1px solid #e2e2e2;padding-top:1rem;}
+</style></head><body>
+<h1>Epea - Privacy Policy</h1>
+<p class="fine" style="border:none;margin-top:0;padding-top:0">Effective 2026-09-25. Version 1.0 (draft, pending operator approval).</p>
+<p>Epea is a free language-learning API. This policy explains what information
+Epea handles when you use the API, and what it does not handle. Unlike a
+read-only reference API, Epea is write-capable: it records your exercise
+attempts so it can schedule your reviews. If you are the operator deploying
+this API, you are responsible for telling your API users what extra logging
+your own deployment performs (operator contact details are in the Contact
+section below).</p>
+<h2>What Epea does</h2>
+<p>Epea serves language-learning content (exercises, sentences, listening
+audio) and keeps learning progress. There are no accounts: when a learner
+starts, the API issues an <strong>opaque learner ID</strong> (a random UUID)
+via <code>POST /learners</code>. That ID is the only handle Epea has on a
+learner. Exercise attempts and spaced-repetition scheduling state are stored
+server-side, keyed to that opaque ID. No names, email addresses, or other
+personal details are collected or stored.</p>
+<h2>What is collected</h2>
+<p><strong>The API key.</strong> Epea authenticates requests with a single
+shared key sent in the <code>X-API-Key</code> header. The key is compared in
+constant time against the <code>EPEA_API_KEY</code> environment variable on
+the server. Because one key is shared, a request cannot be tied to a specific
+person, account, or device. Epea has no way to know who you are from the key
+alone.</p>
+<p><strong>Learner progress.</strong> For each opaque learner ID, Epea stores:
+the learner record (ID and creation time), exercise attempts (exercise ID,
+answer given, whether it was correct, timestamp), and spaced-repetition
+scheduling state (per-card review history and due dates). This data exists so
+the API can pick the right exercises for the next lesson. It contains no
+personal information.</p>
+<p><strong>Request logs.</strong> The Epea application code itself does no
+request logging. The server process that runs Epea (for example, uvicorn)
+may write access logs that include the client's IP address and request path.
+The operator's intent is that any such logs are kept for no longer than 30
+days and then rotated or deleted, and are visible only to the operator for
+debugging and abuse prevention. (The hosting platform keeps its own platform
+logs under its own policies, outside the operator's control.)</p>
+<h2>Full deletion</h2>
+<p>All learner data can be wiped at any time with
+<code>DELETE /learners/{id}</code>. This erases the learner record, all
+exercise attempts, and all spaced-repetition cards for that ID. After a
+successful delete, nothing of that learner remains on the server. This is the
+erasure path: use it to delete a learner completely.</p>
+<h2>What is NOT collected</h2>
+<ul>
+<li><strong>No accounts or personal details.</strong> There is no
+registration, no login, no names, no email addresses, and no passwords. The
+opaque learner ID cannot be linked back to a person by Epea.</li>
+<li><strong>No learner voice.</strong> All listening audio is pre-generated
+synthetic speech made at build time. Version 1 has no speaking exercises:
+no microphone audio is recorded, transmitted, or stored.</li>
+<li><strong>No tracking cookies.</strong> Epea is an API, not a website, and
+sets no cookies.</li>
+<li><strong>No advertising.</strong> No ads are served and no data is
+collected for advertising.</li>
+<li><strong>No payment data.</strong> Epea is free; no payment information is
+ever requested or stored.</li>
+</ul>
+<h2>Data retention</h2>
+<p>Learner progress data is kept until it is deleted via
+<code>DELETE /learners/{id}</code>. There is no automatic expiry; the
+erasure endpoint is the way to remove it. Any operator-kept access logs are
+intended to be kept no longer than 30 days and then rotated or deleted, as
+described above.</p>
+<h2>Security</h2>
+<p>The API key travels in the <code>X-API-Key</code> request header. Users of a
+hosted Epea instance should confirm with the operator that the API is served
+over HTTPS so the key is not transmitted in clear text. The server stores the
+expected key in the <code>EPEA_API_KEY</code> environment variable, never in
+the codebase or database.</p>
+<h2>Children's privacy</h2>
+<p>Epea collects no personal information from anyone, including children.
+Progress is stored only against opaque random IDs that cannot be linked to a
+person. There is no way to submit personal data through the API.</p>
+<h2>International users</h2>
+<p>Epea stores no personal data, so there is no personal data to transfer,
+store, or process across borders. If the operator keeps access logs
+containing IP addresses, the operator is responsible for complying with the
+applicable rules of the relevant jurisdictions.</p>
+<h2>Content licenses and attribution</h2>
+<p>Epea's learning content and audio are built from openly licensed sources,
+and attribution is given as each license requires. Sentence data: Tatoeba,
+licensed <strong>CC BY 2.0 FR</strong> (attribution to Tatoeba contributors).
+Spanish voice: sharvard dataset via rhasspy/piper-voices, licensed
+<strong>CC BY 3.0</strong>. French voice: SIWIS French Speech Synthesis
+Database via rhasspy/piper-voices, licensed <strong>CC BY 4.0</strong>. CEFR
+word levels: Words-CEFR-Dataset, MIT. Full attribution texts live in the
+API's <code>sources</code> table and in the API documentation. Share-alike
+licensed content, where used, is kept in separately marked data tables so it
+can never be confused with the API's own code.</p>
+<h2>Educational disclaimer</h2>
+<p>Epea provides educational reference content only. It is not a guarantee of
+fluency, and no educational outcome is promised. Epea is not a substitute for
+formal instruction or professional language teaching.</p>
+<h2>Changes to this policy</h2>
+<p>Material changes to this policy will be posted here with a new effective
+date before they take effect.</p>
+<h2>Contact</h2>
+<p>Operator contact for privacy questions: dexiadigi@gmail.com</p>
+</body></html>

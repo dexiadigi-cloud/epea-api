@@ -1,0 +1,42 @@
+Epea (Language Learning API) - License Summary
+============================================
+
+Original code in this repository (API, scripts, docs):
+  Copyright Jeremiah Lee. License terms for the original code to be
+  finalized before publication; until then, all rights reserved.
+
+Language content data (data/epea.db, data/audio):
+  Built from the following sources, each recorded with its license and
+  attribution text in the database's `sources` table (share_alike=0 for
+  all v1 sources - no BY-SA content in v1):
+
+  - Tatoeba (sentence text) - CC BY 2.0 FR. Attribution required.
+    https://tatoeba.org
+  - Words-CEFR-Dataset (CEFR word levels) - MIT.
+    https://github.com/words-cefr/Words-CEFR-Dataset
+  - Piper TTS voices (pronunciation audio; voice model license governs
+    the generated clips, per the build notes):
+      es sharvard (Spanish) - CC BY 3.0
+      fr siwis (French) - CC BY 4.0
+      it serena (Italian) - CC BY 4.0
+      de thorsten (German) - CC0 1.0
+      pt cadu (Brazilian Portuguese) - CC0 1.0
+      ru denis (Russian) - CC0 1.0
+      uk ukrainian_tts (Ukrainian) - CC0 1.0
+      nl pim (Dutch) - CC0 1.0
+      es-mx ald (Mexican Spanish, opt-in voice) - Unlicense (public domain)
+    https://github.com/rhasspy/piper
+  - LDNOOBW profanity lists (German, Italian, Portuguese, Dutch,
+    Russian) - CC BY 4.0. Attribution required.
+    https://github.com/LDNOOBW/List-of-Dirty-Naughty-Obscene-and-Otherwise-Bad-Words
+  - Banned-words (Ukrainian) - Apache-2.0.
+    https://github.com/readme-SVG/Banned-words
+
+  No Wikipedia/Wikibooks/Wiktionary-derived (BY-SA) content is included
+  in v1.
+
+Build-time tools only (never shipped, never in runtime requirements):
+  spaCy and its pretrained models, Stanza, Piper, and Torch were used
+  solely to generate the database and audio at build time on an isolated
+  machine. Their licenses do not govern the generated output; the output
+  is covered by the content-source licenses listed above.

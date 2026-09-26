@@ -1,0 +1,24 @@
+# Git
+.venv/
+__pycache__/
+*.pyc
+
+# Build-time tooling (never shipped; rebuilt locally if needed)
+tools/
+
+# Full-size database: only the <100MB chunks under data/dist/ are committed
+/data/*.db
+!/data/dist/
+*.csv
+*.zip
+*.bz2
+
+# Raw build inputs
+raw/
+
+# Local dev
+.env
+*.log
+
+# Logo concept drafts (only the official files are committed)
+media-generation-*
