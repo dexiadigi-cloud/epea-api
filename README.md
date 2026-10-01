@@ -1,5 +1,7 @@
 # Epea API
 
+☕ [Support on Ko-fi](https://ko-fi.com/dexiadigi)
+
 Epea (Greek epea, "words" - Homer's "winged words") is a Duolingo-style
 language-learning API: conversation-as-interface, exercises, spaced
 repetition, pronunciation audio, and grammar drilling across 8 languages.
