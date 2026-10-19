@@ -1,5 +1,12 @@
 # Epea API
 
+> Epea is a language-learning API: 8 languages (ES, FR, IT, DE, PT-BR, RU, UK, NL), ~7M sentences, ~3.5M English-X pairs, 273K dictionary words, 18K pronunciation clips.
+
+**Features:** FSRS spaced repetition, accent-sensitive grading, placement tests, grammar-tense drills, opaque learner IDs.
+**Docs:** interactive OpenAPI docs at https://epea-373637331608.us-west1.run.app/docs.
+**Auth:** single `X-API-Key` header.
+
+
 ☕ [Support on Ko-fi](https://ko-fi.com/dexiadigi)
 
 Epea (Greek epea, "words" - Homer's "winged words") is a Duolingo-style
